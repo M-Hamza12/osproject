@@ -2,4 +2,5 @@
 int main(){
     printf("added a new line");
     printf("Another one");
+    printf("New line");
 }
