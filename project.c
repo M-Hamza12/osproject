@@ -186,14 +186,45 @@ int main(){
 	// Convert the data to string and populate the string array
 	for (int i = 1; i < ARR_SIZE + 1; i++)
 		sprintf(strArr[i], "%d", arr[i]);
-
     clock_t start,end;
     pthread_t thread[10];
     double totalTime = 0;
     int k ;
-    void (*fun_ptr)() = &BubbleSort; // [pointer function]
-    fp = fopen("BubbleThread.csv", "w");
-		fprintf(fp,"trial,time\n");
+    printf("Enter which sorting algorithm you would like to utilize through "
+		   "Multithreading and Forking: \n");
+	printf("1. Bubble Sort\n");
+	printf("2. Selection Sort\n");
+	printf("3. Insertion Sort\n");
+	printf("4. Shell Sort\n");
+	printf("5. Comb Sort\n");
+	printf("\nEnter choice: ");
+	scanf("%d", &ch);
+    switch (ch)
+    {
+    case 1:
+        void (*fun_ptr)() = &BubbleSort;
+        fp = fopen("BubbleThread.csv", "w");
+        break;
+    case 2:
+        void (*fun_ptr)() = &SelectionSort;
+        fp = fopen("SelectionThread.csv", "w");
+        break;
+    case 3:
+        void (*fun_ptr)() = &InsertionSort;
+        fp = fopen("InsertionThread.csv", "w");
+        break;
+    case 4:
+        void (*fun_ptr)() = &ShellSort;
+        fp = fopen("ShellThread.csv", "w");
+        break;
+    case 5:
+        void (*fun_ptr)() = &CombSort;
+        fp = fopen("CombThread.csv", "w");
+        break;
+    default:
+        break;
+    }
+	fprintf(fp,"trial,time\n");
     for(k = 0 ; k < 10 ; k++){ // each algo will run 10 times having 10 thread in each iter.
          int i;
          start = clock();
@@ -213,11 +244,11 @@ int main(){
             }
         fprintf(fp, "%d,%f\n",k+1, cpu_time_used);
     }
-    strcpy(strArr[0], "./bubble");
-    int j;
-    for(j=0;j<10;j++)
-    if (execvp("./bubble", strArr) == -1)
-			printf("Error!\n");
+    // strcpy(strArr[0], "./bubble");
+    // int j;
+    // for(j=0;j<10;j++)
+    // if (execvp("./bubble", strArr) == -1)
+	// 		printf("Error!\n");
      
 }
     //  clock_t start, end;
