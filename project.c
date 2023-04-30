@@ -204,36 +204,43 @@ int main(){
     switch (ch)
     {
     case 1:
-         fun_ptr = BubbleSort;
+        printf("\n\n\x1b[94m~~~~~~~~~BUBBLE SORT~~~~~~~~~~\x1b[0m\n");
+		fun_ptr = BubbleSort;
         fp = fopen("BubbleThread.csv", "w");
 		strcpy(strArr[0], "./bubble");
 		strcpy(path,"./bubble");
         break;
     case 2:
+		printf("\n\n\x1b[94m~~~~~~~~~SELECTION SORT~~~~~~~~~~\x1b[0m\n");
          fun_ptr = SelectionSort;
         fp = fopen("SelectionThread.csv", "w");
 		strcpy(strArr[0], "./selection");
 		strcpy(path,"./selection");
         break;
     case 3:
+		printf("\n\n\x1b[94m~~~~~~~~~INSERTION SORT~~~~~~~~~~\x1b[0m\n");
         fun_ptr= InsertionSort;
         fp = fopen("InsertionThread.csv", "w");
 		strcpy(strArr[0], "./insertion");
 		strcpy(path,"./insertion");
         break;
     case 4:
+		printf("\n\n\x1b[94m~~~~~~~~~SHELL SORT~~~~~~~~~~\x1b[0m\n");
          fun_ptr= ShellSort;
         fp = fopen("ShellThread.csv", "w");
 		strcpy(strArr[0], "./shell");
 		strcpy(path,"./shell");
         break;
     case 5:
+		printf("\n\n\x1b[94m~~~~~~~~~COMB SORT~~~~~~~~~~\x1b[0m\n");
          fun_ptr = CombSort;
         fp = fopen("CombThread.csv", "w");
 		strcpy(strArr[0], "./comb");
 		strcpy(path,"./comb");
         break;
     default:
+        printf("Invalid choice");
+        return 1;
         break;
     }
 	if(!fp)
