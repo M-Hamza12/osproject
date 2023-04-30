@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
 
 	//here we add the time taken for PROCESS CREATIONS aswell BECAUSE in threading we included
 	//the time taken for THREAD CREATION aswell.
-    double timetaken = ((double)(end - start) / CLOCKS_PER_SEC) + timetaken1;
+    double timetaken = ((double)(end - start) / CLOCKS_PER_SEC) + timetaken1*8;
     
 	
 	if (getpid() == id)

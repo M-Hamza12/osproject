@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
     ShellSort();
     clock_t end = clock();
 
-    double timetaken = ((double)(end - start) / CLOCKS_PER_SEC) + timetaken1;
+    double timetaken = ((double)(end - start) / CLOCKS_PER_SEC) + timetaken1*8;
     if (getpid() == id)
     {
       if(k==14)
