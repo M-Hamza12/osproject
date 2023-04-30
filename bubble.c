@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
   
   //THIS TIME we open the file in append mode rather than write
   //because we want to append the results for 15 trials
+  remove("BubbleFork.csv");
   fp = fopen("BubbleFork.csv", "a");
   if(fp == NULL)
     printf("ERROR!\n");
@@ -53,9 +54,9 @@ int main(int argc, char *argv[])
   clock_t start1 = clock();
 
   //running 3 fork statements will create 2^3=8 processes, this is y we used 8 threads aswell
-  //fork();
-  //fork();
-  //fork();
+  fork();
+  fork();
+  fork();
   
   //the clock stop for parent process BECAUSE
   //we need the time taken for process CREATION, and we are assumign here all processes
@@ -66,8 +67,8 @@ int main(int argc, char *argv[])
     timetaken1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
   }
 
-  //similarly 15 trials here aswell
-  for (k = 0; k < 15; k++)
+  //similarly 10 trials here aswell
+  for (k = 0; k < 10; k++)
   {
     clock_t start = clock();
     

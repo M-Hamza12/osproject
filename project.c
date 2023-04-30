@@ -176,7 +176,9 @@ void CombSort()
 
 int main(){
     FILE *fp;
-
+	int ch;
+	char*path = (char*) calloc(30,sizeof(char)); //The path for the process
+	void(*fun_ptr)();
     // Create a dynamic string array to pass data to other files
 	char **strArr = calloc(ARR_SIZE + 2, sizeof(char *));
 	for (int i = 0; i < ARR_SIZE + 2; i++)
@@ -187,7 +189,7 @@ int main(){
 	for (int i = 1; i < ARR_SIZE + 1; i++)
 		sprintf(strArr[i], "%d", arr[i]);
     clock_t start,end;
-    pthread_t thread[10];
+    pthread_t thread[8];
     double totalTime = 0;
     int k ;
     printf("Enter which sorting algorithm you would like to utilize through "
@@ -202,36 +204,48 @@ int main(){
     switch (ch)
     {
     case 1:
-        void (*fun_ptr)() = &BubbleSort;
+         fun_ptr = BubbleSort;
         fp = fopen("BubbleThread.csv", "w");
+		strcpy(strArr[0], "./bubble");
+		strcpy(path,"./bubble");
         break;
     case 2:
-        void (*fun_ptr)() = &SelectionSort;
+         fun_ptr = SelectionSort;
         fp = fopen("SelectionThread.csv", "w");
+		strcpy(strArr[0], "./selection");
+		strcpy(path,"./selection");
         break;
     case 3:
-        void (*fun_ptr)() = &InsertionSort;
+        fun_ptr= InsertionSort;
         fp = fopen("InsertionThread.csv", "w");
+		strcpy(strArr[0], "./insertion");
+		strcpy(path,"./insertion");
         break;
     case 4:
-        void (*fun_ptr)() = &ShellSort;
+         fun_ptr= ShellSort;
         fp = fopen("ShellThread.csv", "w");
+		strcpy(strArr[0], "./shell");
+		strcpy(path,"./shell");
         break;
     case 5:
-        void (*fun_ptr)() = &CombSort;
+         fun_ptr = CombSort;
         fp = fopen("CombThread.csv", "w");
+		strcpy(strArr[0], "./comb");
+		strcpy(path,"./comb");
         break;
     default:
         break;
     }
+	if(!fp)
+		printf("couldn't open the file\n");
 	fprintf(fp,"trial,time\n");
     for(k = 0 ; k < 10 ; k++){ // each algo will run 10 times having 10 thread in each iter.
          int i;
          start = clock();
-         for(i=0;i<10;i++)
+         for(i=0;i<8;i++)
             pthread_create(&thread[i],NULL,(void*)fun_ptr,NULL);
 
-         for(i=0;i<10;i++)
+         for(i=0;i<8;i++)
             pthread_join(thread[i],NULL);
         end = clock();
         double cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
@@ -244,6 +258,12 @@ int main(){
             }
         fprintf(fp, "%d,%f\n",k+1, cpu_time_used);
     }
+	fclose(fp);
+	//process code ..
+	int i;
+		if (execvp(path, strArr) == -1)
+			printf("Error! Unable to create the process\n");
+
     // strcpy(strArr[0], "./bubble");
     // int j;
     // for(j=0;j<10;j++)
