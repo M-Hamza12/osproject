@@ -48,6 +48,7 @@ int main(int argc, char *argv[]) {
   FILE *fp;
   remove("CombFork.csv");
   fp = fopen("CombFork.csv", "a");
+  fprintf(fp,"time,trial");
   if(fp == NULL)
     printf("ERROR!\n");
 
