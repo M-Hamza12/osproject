@@ -261,6 +261,7 @@ int main(){
 	printf("3. Insertion Sort\n");
 	printf("4. Shell Sort\n");
 	printf("5. Comb Sort\n");
+	printf("6. merge Sort\n");
 	printf("\nEnter choice: ");
 	scanf("%d", &ch);
     switch (ch)
@@ -307,7 +308,7 @@ int main(){
 	if(!fp)
 		printf("couldn't open the file\n");
 	fprintf(fp,"trial,time\n");
-    for(k = 0 ; k < 8 ; k++){ // each algo will run 8 times having 8 thread in each iter.
+    for(k = 0 ; k < 10 ; k++){ // each algo will run 8 times having 8 thread in each iter.
          int i;
          start = clock();
          for(i=0;i<8;i++){
